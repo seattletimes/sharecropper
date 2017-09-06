@@ -55,6 +55,26 @@ document.addEventListener("mousemove", function(e) {
     y: invertY ? state.mouse.y - height : state.mouse.y,
     width, height
   }
+  if (state.selection.x < 0) {
+    state.selection.width += state.selection.x;
+    state.selection.height = state.selection.width / state.ratio.width * state.ratio.height;
+    state.selection.y = state.mouse.y - state.selection.height;
+    state.selection.x = 0;
+  }
+  if (state.selection.y < 0) {
+    state.selection.height = state.mouse.y;
+    state.selection.width = state.selection.height / state.ratio.height * state.ratio.width;
+    state.selection.x = state.mouse.x - state.selection.width;
+    state.selection.y = 0;
+  }
+  if (state.selection.x + state.selection.width > bounds.width) {
+    state.selection.width = bounds.width - state.selection.x;
+    state.selection.height = state.selection.width / state.ratio.width * state.ratio.height;
+  }
+  if (state.selection.y + state.selection.height > bounds.height) {
+    state.selection.height = bounds.height - state.selection.y;
+    state.selection.width = state.selection.height / state.ratio.height * state.ratio.width;
+  }
   updateAnts();
 });
 
