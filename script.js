@@ -91,6 +91,12 @@ canvas.addEventListener("drop", function(e) {
 });
 
 var downloadCropped = function() {
+  if (!state.image) {
+    return errorOut.innerHTML = "You need to add an image before you can crop it!";
+  }
+  if (!state.selection) {
+    return errorOut.innerHTML = "No selection made: drag and drop an area to create a crop.";
+  }
   var [width, height] = presetSelect.value.split("x").map(Number);
   var offscreenCanvas = document.createElement("canvas");
   offscreenCanvas.width = width;
