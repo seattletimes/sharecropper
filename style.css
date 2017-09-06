@@ -3,7 +3,7 @@
 }
 
 :root {
-
+  font-family: sans-serif;
 }
 
 body {
@@ -33,6 +33,7 @@ body {
 
 .resize-container canvas {
   display: block;
+  width: 100%;
 }
 
 .resize-container .resizing {
@@ -56,4 +57,28 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 16px;
+}
+
+.controls select {
+  width: 100%;
+}
+
+.controls button {
+  width: 100%;
+  margin: 16px 0;
+  background: white;
+  text-transform: uppercase;
+  font-family: monospace;
+  border: none;
+  cursor: pointer;
+  padding: 8px 0;
+}
+
+.controls button:hover, .controls button:focus {
+  background: #eee;
+}
+
+.error {
+  padding: 16px;
 }

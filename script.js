@@ -4,6 +4,7 @@ var ants = document.querySelector(".resize-container .resizing");
 
 var presetSelect = document.querySelector("select.presets");
 var download = document.querySelector("button.download");
+var errorOut = document.querySelector(".error");
 
 var cancel = e => e.preventDefault();
 
@@ -11,8 +12,8 @@ var state = {
   mouse: null,
   selection: null,
   ratio: {
-    width: 16,
-    height: 9
+    width: 780,
+    height: 563
   }
 };
 
@@ -100,6 +101,9 @@ var downloadCropped = function() {
     width: state.selection.width / bounds.width * state.image.width,
     height: state.selection.height / bounds.height * state.image.height
   };
+  if (crop.width < width || crop.height < height) {
+    return errorOut.innerHTML = "Crop too small: resulting image will be fuzzy. Please select a larger area or use a bigger source image."
+  }
   offscreen.drawImage(state.image, crop.x, crop.y, crop.width, crop.height, 0, 0, offscreenCanvas.width, offscreenCanvas.height);
   var url = offscreenCanvas.toDataURL("image/jpeg");
   var a = document.createElement("a");
