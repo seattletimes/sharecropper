@@ -20,6 +20,7 @@ body {
   justify-content: center;
   align-items: center;
   background: #eee;
+  background: white;
 }
 
 .resize-container {
@@ -27,13 +28,26 @@ body {
   max-height: 90%;
   box-shadow: 0 8px 16px 16px rgba(0, 0, 0, .08),
     0 16px 16px -8px rgba(0, 0, 0, .12);
-  background: white;
   position: relative;
+}
+
+.resize-container::before {
+  position: absolute;
+  top: 40%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  content: "Drag an image here to begin";
+  display: block;
+  color: #888;
+  font-family: monospace;
+  font-size: 32px;
 }
 
 .resize-container canvas {
   display: block;
   width: 100%;
+  position: relative;
 }
 
 .resize-container .resizing {
