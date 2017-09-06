@@ -5,6 +5,7 @@ var ants = document.querySelector(".resize-container .resizing");
 var presetSelect = document.querySelector("select.presets");
 var download = document.querySelector("button.download");
 var errorOut = document.querySelector(".error");
+var statusOut = document.querySelector(".status");
 
 var cancel = e => e.preventDefault();
 
@@ -16,6 +17,10 @@ var state = {
     height: 563
   }
 };
+
+var [w, h] = presetSelect.value.split("x").map(Number);
+state.ratio.width = w;
+state.ratio.height = h;
 
 var updateAnts = function() {
   ants.classList.toggle("show", state.selection);
@@ -87,12 +92,15 @@ presetSelect.addEventListener("change", function() {
   var [width, height] = presetSelect.value.split("x").map(Number);
   state.ratio = { width, height };
   state.selection = null;
+  if (state.image && (state.image.width < state.ratio.width || state.image.height < state.ratio.height)) {
+    errorOut.innerHTML = "Warning: this image is too small to crop for the selected preset";
+  }
   updateAnts();
 });
 
-canvas.addEventListener("dragenter", cancel);
-canvas.addEventListener("dragover", cancel);
-canvas.addEventListener("drop", function(e) {
+document.body.addEventListener("dragenter", cancel);
+document.body.addEventListener("dragover", cancel);
+document.body.addEventListener("drop", function(e) {
   cancel(e);
   errorOut.innerHTML = "";
   if (!e.dataTransfer || !e.dataTransfer.files) return;
@@ -101,9 +109,15 @@ canvas.addEventListener("drop", function(e) {
   reader.onload = function() {
     state.image = new Image();
     state.image.onload = function() {
+      statusOut.innerHTML = `Loaded: ${state.image.width}x${state.image.height}`;
       canvas.width = state.image.width;
       canvas.height = state.image.height;
       context.drawImage(state.image, 0, 0);
+      state.selection = null;
+      updateAnts();
+      if (state.image.width < state.ratio.width || state.image.height < state.ratio.height) {
+        errorOut.innerHTML = "Warning: this image is too small to crop for the selected preset";
+      }
     }
     state.image.src = reader.result;
   };

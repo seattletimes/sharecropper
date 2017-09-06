@@ -29,6 +29,7 @@ body {
   box-shadow: 0 8px 16px 16px rgba(0, 0, 0, .08),
     0 16px 16px -8px rgba(0, 0, 0, .12);
   position: relative;
+  overflow: hidden;
 }
 
 .resize-container::before {
@@ -76,6 +77,7 @@ body {
 
 .controls select {
   width: 100%;
+  padding: 4px 8px;
 }
 
 .controls button {
@@ -93,6 +95,13 @@ body {
   background: #eee;
 }
 
+.status {
+  font-size: 14px;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
 .error {
-  padding: 16px;
+  color: red;
+  margin-bottom: 8px;
 }
