@@ -33,6 +33,7 @@ canvas.addEventListener("mousedown", function(e) {
   var y = e.clientY - bounds.top;
   state.mouse = { x, y };
   state.selection = null;
+  errorOut.innerHTML = "";
 });
 
 document.addEventListener("mousemove", function(e) {
@@ -73,6 +74,7 @@ canvas.addEventListener("dragenter", cancel);
 canvas.addEventListener("dragover", cancel);
 canvas.addEventListener("drop", function(e) {
   cancel(e);
+  errorOut.innerHTML = "";
   if (!e.dataTransfer || !e.dataTransfer.files) return;
   var f = e.dataTransfer.files[0];
   var reader = new FileReader();
