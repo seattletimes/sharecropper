@@ -1,0 +1,59 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+
+}
+
+body {
+  display: flex;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.image-container {
+  flex: 1 1 0%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #eee;
+}
+
+.resize-container {
+  max-width: 90%;
+  max-height: 90%;
+  box-shadow: 0 8px 16px 16px rgba(0, 0, 0, .08),
+    0 16px 16px -8px rgba(0, 0, 0, .12);
+  background: white;
+  position: relative;
+}
+
+.resize-container canvas {
+  display: block;
+}
+
+.resize-container .resizing {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 2px dotted #888;
+  display: none;
+}
+
+.resize-container .resizing.show {
+  display: block;
+  pointer-events: none;
+}
+
+.controls {
+  flex: 0 0 200px;
+  background: #333;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
