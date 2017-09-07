@@ -55,8 +55,29 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  border: 2px dotted #888;
   display: none;
+}
+
+@keyframes crawl {
+  from { stroke-dashOffset: 8; }
+  to { stroke-dashOffset: 0; }
+}
+
+.resize-container .resizing rect {
+  fill: transparent;
+  stroke: black;
+  stroke-width: 2;
+  stroke-dashArray: 4 4;
+  animation: .2s infinite linear crawl;
+}
+
+.resize-container .resizing rect.a {
+  stroke: black;
+}
+
+.resize-container .resizing rect.b {
+  stroke: white;
+  animation-delay: .1s;
 }
 
 .resize-container .resizing.show {

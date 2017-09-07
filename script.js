@@ -25,10 +25,10 @@ state.ratio.height = h;
 var updateAnts = function() {
   ants.classList.toggle("show", state.selection);
   if (state.selection) {
-    ants.style.left = state.selection.x + "px";
-    ants.style.top = state.selection.y + "px";
-    ants.style.width = state.selection.width + "px";
-    ants.style.height = state.selection.height + "px";
+    ants.style.left = Math.round(state.selection.x) + "px";
+    ants.style.top = Math.round(state.selection.y) + "px";
+    ants.style.width = Math.round(state.selection.width) + "px";
+    ants.style.height = Math.round(state.selection.height) + "px";
   }
 };
 
