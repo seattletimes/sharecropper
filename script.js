@@ -14,7 +14,7 @@ var state = {
   selection: null,
   ratio: {
     width: 780,
-    height: 563
+    height: 501
   }
 };
 
